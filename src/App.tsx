@@ -13,11 +13,13 @@ const testimonials = [
 
 function App() {
   const address = siteConfig.address.trim()
-  const hasRealAddress = Boolean(address) && !siteConfig.addressIsDemo
+  const hasConfiguredAddress = Boolean(address)
   const mapsSearchUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`
   const mapsEmbedUrl = `https://www.google.com/maps?q=${encodeURIComponent(address)}&output=embed`
-  const displayedAddress = hasRealAddress
-    ? address
+  const displayedAddress = hasConfiguredAddress
+    ? siteConfig.addressIsDemo
+      ? `Endereço demonstrativo: ${address}`
+      : address
     : 'Endereço demonstrativo — configure uma localização real.'
 
   return (
@@ -250,7 +252,7 @@ function App() {
             <div className="contact__map">
               <div className="contact__map-heading">
                 <h3>Encontre a gente</h3>
-                {hasRealAddress ? (
+                {hasConfiguredAddress ? (
                   <a
                     className="button button--small"
                     href={mapsSearchUrl}
@@ -264,16 +266,16 @@ function App() {
                     className="button button--small button--disabled"
                     type="button"
                     disabled
-                    aria-label="Configure um endereço real para ver como chegar"
+                    aria-label="Configure um endereço para ver como chegar"
                   >
                     Como chegar <span aria-hidden="true">↗</span>
                   </button>
                 )}
               </div>
-              {hasRealAddress ? (
+              {hasConfiguredAddress ? (
                 <iframe
                   src={mapsEmbedUrl}
-                  title={`Mapa de localização: ${address}`}
+                  title={`${siteConfig.addressIsDemo ? 'Mapa de endereço demonstrativo' : 'Mapa de localização'}: ${address}`}
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                   allowFullScreen
@@ -282,10 +284,10 @@ function App() {
                 <div
                   className="contact__map-placeholder"
                   role="img"
-                  aria-label="Mapa aguardando a configuração de um endereço real"
+                  aria-label="Mapa aguardando a configuração de um endereço"
                 >
                   <span aria-hidden="true">⌖</span>
-                  <p>O mapa aparecerá aqui quando um endereço real for configurado.</p>
+                  <p>O mapa aparecerá aqui quando um endereço for configurado.</p>
                 </div>
               )}
             </div>

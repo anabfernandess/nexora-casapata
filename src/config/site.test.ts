@@ -9,7 +9,7 @@ describe('siteConfig', () => {
     expect(siteConfig.phone).toContain('demonstrativo')
     expect(siteConfig.email).toBe('')
     expect(siteConfig.whatsapp).toBe('')
-    expect(siteConfig.address).toContain('demonstrativo')
+    expect(siteConfig.address).toBe('Av. das Américas, 19019 - Recreio dos Bandeirantes, Rio de Janeiro - RJ, 22790-703')
     expect(siteConfig.addressIsDemo).toBe(true)
     expect(siteConfig.hours.length).toBeGreaterThan(0)
     expect(siteConfig.services).toHaveLength(4)

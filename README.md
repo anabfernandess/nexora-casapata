@@ -34,7 +34,7 @@ npm run preview
 
 Edite [`src/config/site.ts`](./src/config/site.ts) para alterar nome, slogan, descrição, telefone, e-mail, WhatsApp, endereço, horários, serviços, cores, fotografias e redes sociais. Os componentes e seções consomem essa configuração, sem exigir alterações na estrutura da página.
 
-- **Telefone e endereço:** substitua os valores demonstrativos por informações públicas autorizadas. Para habilitar o mapa e o botão "Como chegar", altere `address` para o endereço real e `addressIsDemo` para `false`. Enquanto `addressIsDemo` for `true`, o endereço não será enviado ao Google Maps.
+- **Telefone e endereço:** substitua os valores demonstrativos por informações públicas autorizadas. O mapa e o botão "Como chegar" usam qualquer endereço configurado; quando `addressIsDemo` for `true`, o endereço continua identificado como demonstrativo no site. Deixe `address` vazio para mostrar somente o espaço reservado.
 - **E-mail:** preencha `email` com o endereço validado do cliente. Sem endereço configurado, o botão de contato permanece desativado.
 - **WhatsApp:** informe o número internacional com DDI e DDD, apenas com dígitos, por exemplo `5511999999999`. Com o campo vazio, o botão flutuante aparece desativado e informa que precisa ser configurado.
 - **Serviços:** atualize a lista `services`; os ícones aceitos são `bath`, `scissors`, `heart` e `basket`.

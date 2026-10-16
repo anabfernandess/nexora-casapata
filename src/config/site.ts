@@ -47,7 +47,7 @@ export const siteConfig: SiteConfig = {
   phone: '(11) 0000-0000 — número demonstrativo',
   email: '',
   whatsapp: '',
-  address: 'Endereço demonstrativo — não corresponde a um estabelecimento real',
+  address: 'Av. das Américas, 19019 - Recreio dos Bandeirantes, Rio de Janeiro - RJ, 22790-703',
   addressIsDemo: true,
   hours: ['Segunda a sexta, das 9h às 18h', 'Sábado, das 9h às 14h'],
   services: [

@@ -24,15 +24,18 @@ describe('pet shop template', () => {
     expect(screen.getByRole('button', { name: /configure um e-mail de contato/i })).toBeDisabled()
   })
 
-  it('keeps a demonstrative address out of the map and disables directions', () => {
+  it('shows the configured demonstrative address in the map and directions link', () => {
     render(<App />)
 
-    expect(screen.getByRole('img', { name: /aguardando a configuração de um endereço real/i }))
-      .toBeInTheDocument()
-    expect(screen.getByRole('button', { name: /configure um endereço real para ver como chegar/i }))
-      .toBeDisabled()
-    expect(screen.queryByTitle(/mapa de localização/i)).not.toBeInTheDocument()
-    expect(screen.getByText('Endereço demonstrativo — configure uma localização real.')).toBeInTheDocument()
+    const address = siteConfig.address
+    const query = encodeURIComponent(address)
+
+    expect(screen.getByText(`Endereço demonstrativo: ${address}`)).toBeInTheDocument()
+    expect(screen.getByTitle(`Mapa de endereço demonstrativo: ${address}`))
+      .toHaveAttribute('src', `https://www.google.com/maps?q=${query}&output=embed`)
+    expect(screen.getByRole('link', { name: /como chegar/i }))
+      .toHaveAttribute('href', `https://www.google.com/maps/search/?api=1&query=${query}`)
+    expect(screen.queryByRole('img', { name: /mapa aguardando/i })).not.toBeInTheDocument()
   })
 
   it('opens and closes the mobile navigation accessibly', () => {
